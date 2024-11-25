@@ -1,12 +1,16 @@
 package org.example;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         boolean menu=true;
 
@@ -37,7 +41,28 @@ public class Main {
         }
     }
 
-    private static void encryptFile() {
+    private static void encryptFile() throws Exception {
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("enter the file to encrypt");
+        //String inputFiles=input.nextLine();
+        File inputFile=new File("plaintext.txt");
+
+
+        System.out.println("Enter the path to save the encrypted file");
+        //String outputFile=input.nextLine();
+        File outputFile1=new File("ciphertext.txt");
+
+        SecretKey key = AES.genereteKey(256);
+        IvParameterSpec iv =AES.generateIv();
+
+        AES.encryptFile("AES/CBC/PKCS5Padding", key, iv, inputFile, outputFile1);
+        System.out.println("File encrypted successfully!");
+        System.out.println("Encryption Key (base64): " + java.util.Base64.getEncoder().encodeToString(key.getEncoded()));
+        System.out.println("IV (base64): " + java.util.Base64.getEncoder().encodeToString(iv.getIV()));
+
+
+
     }
     private static void decryptFile() {
 
