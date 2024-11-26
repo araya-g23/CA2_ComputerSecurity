@@ -19,6 +19,8 @@ class AESTest {
         File inputFile = new File("./plaintext.txt");
         File encryptedFile = new File("./ciphertext.txt");
         AES.encryptFile(algorithm, key, iv, inputFile, encryptedFile);
+        assertTrue(inputFile.exists());
+
 
 
 
