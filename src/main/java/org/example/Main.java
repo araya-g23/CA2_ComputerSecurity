@@ -46,8 +46,11 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("enter the file to encrypt");
         //String inputFiles=input.nextLine();
-        File inputFile=new File("plaintext.txt");
-
+        File inputFile=new File("plaintext.txt");//plaintext.txt
+        if (!inputFile.exists()) {
+            System.out.println("Error: Input file does not exist.");
+            return;
+        }
 
         System.out.println("Enter the path to save the encrypted file");
         //String outputFile=input.nextLine();
