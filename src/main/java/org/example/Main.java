@@ -43,16 +43,14 @@ public class Main {
 
     private static void encryptFile() throws Exception {
 
+        //File inputFile = new File("plaintext.txt");
         Scanner input = new Scanner(System.in);
-        System.out.println("enter the file to encrypt");
+        //System.out.println("enter the file to encrypt");
         //String inputFiles=input.nextLine();
-        File inputFile=new File("plaintext.txt");//plaintext.txt
-        if (!inputFile.exists()) {
-            System.out.println("Error: Input file does not exist.");
-            return;
-        }
+        File inputFile=new File("./src/assets/plaintext.txt.txt");//plaintext.txt
 
-        System.out.println("Enter the path to save the encrypted file");
+
+        //System.out.println("Enter the path to save the encrypted file");
         //String outputFile=input.nextLine();
         File outputFile1=new File("ciphertext.txt");
 
