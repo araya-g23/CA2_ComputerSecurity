@@ -2,11 +2,13 @@ package org.example;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLOutput;
+import java.util.Base64;
 import java.util.Scanner;
-
+//https://medium.com/@deepak.sirohi9188/java-aes-encryption-and-decryption-1b30c9a5d900
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -45,14 +47,14 @@ public class Main {
 
         //File inputFile = new File("plaintext.txt");
         Scanner input = new Scanner(System.in);
-        //System.out.println("enter the file to encrypt");
-        //String inputFiles=input.nextLine();
-        File inputFile=new File("./src/assets/plaintext.txt.txt");//plaintext.txt
+        System.out.println("enter the file to encrypt");
+        String inputFiles=input.nextLine();
+        File inputFile=new File(inputFiles);//./src/assets/plaintext.txt.txt
 
 
-        //System.out.println("Enter the path to save the encrypted file");
-        //String outputFile=input.nextLine();
-        File outputFile1=new File("ciphertext.txt");
+        System.out.println("Enter the path to save the encrypted file");
+        String outputFile=input.nextLine();
+        File outputFile1=new File(outputFile);//ciphertext.txt
 
         SecretKey key = AES.genereteKey(256);
         IvParameterSpec iv =AES.generateIv();
@@ -65,7 +67,39 @@ public class Main {
 
 
     }
-    private static void decryptFile() {
+    private static void decryptFile() throws Exception {
+       Scanner input=new Scanner(System.in);
+        System.out.println("enter the encrypted file name");
+        String fileName=input.nextLine();
+        File encryptedFile =new File(fileName);
+
+
+        System.out.println("Enter the output file path for the decrypted data:");
+        String decryptedFilePath = input.nextLine();
+        File outputFile = new File(decryptedFilePath);
+
+
+        System.out.println("enter Encryption Key (base64) : ");
+        String decryptionKey=input.next();
+        byte[] decodedKey = Base64.getDecoder().decode(decryptionKey);
+        SecretKey key= new SecretKeySpec(decodedKey,0,decodedKey.length,"AES");
+
+
+        System.out.println("enter the IV (base64) : ");
+        String encryptioniv=input.next();
+        byte[] decodeIv=Base64.getDecoder().decode(encryptioniv);
+        IvParameterSpec iv =new IvParameterSpec(decodeIv);
+
+
+        AES.decryptFile("AES/CBC/PKCS5Padding",key,iv,encryptedFile,outputFile);
+        System.out.println("Decrypted file successfully!");
+        System.out.println("Decrypted content saved to : "+decryptedFilePath);
+
+
+
+
+
+
 
     }
 }

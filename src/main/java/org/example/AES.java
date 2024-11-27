@@ -23,12 +23,7 @@ public class AES {
         return key;
 
     }
-//    public static SecretKey getKeyFromPassword(String password, String salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
-//        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-//        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 256);
-//        SecretKey secret = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
-//        return secret;
-//    }
+
     public static IvParameterSpec generateIv(){
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
@@ -53,6 +48,26 @@ public class AES {
             outputStream.write(outputbytes);
         }
 
+        inputStream.close();
+        outputStream.close();
+    }
+    public static void decryptFile(String algorithm, SecretKey key,IvParameterSpec iv, File inputFile, File outputFile) throws Exception{
+        Cipher cipher= Cipher.getInstance(algorithm);
+        cipher.init(Cipher.DECRYPT_MODE, key, iv);
+        FileInputStream inputStream = new FileInputStream(inputFile);
+        FileOutputStream outputStream = new FileOutputStream(outputFile);
+        byte[] buffer = new byte[64];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byte[] output = cipher.update(buffer, 0, bytesRead);
+            if(output != null){
+                outputStream.write(output);
+            }
+        }
+        byte [] outputbytes = cipher.doFinal();
+        if(outputbytes != null){
+            outputStream.write(outputbytes);
+        }
         inputStream.close();
         outputStream.close();
     }

@@ -17,7 +17,7 @@ class AESTest {
 
 
         AES aes = new AES();
-        SecretKey key= AES.genereteKey(128);
+        SecretKey key= AES.genereteKey(256);
         String algorithm = "AES/CBC/PKCS5Padding";
         IvParameterSpec iv = AES.generateIv();
         //File inputFile = new File("plaintext.txt");
