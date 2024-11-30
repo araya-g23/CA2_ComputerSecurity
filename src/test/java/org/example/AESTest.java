@@ -13,7 +13,7 @@ class AESTest {
 
     @org.junit.jupiter.api.Test
     void encryptfile() throws Exception {
-        File inputFile = new File("./src/assets/plaintext.txt.txt");
+        File inputFile = new File("./src/assets/plaintext.txt");
 
 
         AES aes = new AES();
