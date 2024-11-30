@@ -19,10 +19,10 @@ class AESTest {
         AES aes = new AES();
         SecretKey key= AES.genereteKey(256);
         String algorithm = "AES/CBC/PKCS5Padding";
-        IvParameterSpec iv = AES.generateIv();
+        //IvParameterSpec iv = AES.generateIv();
         //File inputFile = new File("plaintext.txt");
         File encryptedFile = new File("ciphertext.txt");
-        AES.encryptFile(algorithm, key, iv, inputFile, encryptedFile);
+        AES.encryptFile(algorithm, key, inputFile, encryptedFile);
         assertTrue(inputFile.exists(),"it exist ");
 
 
