@@ -1,1 +1,1 @@
-plain text file = ./src/assets/plaintext.txt.txt
+plain text file = ./src/assets/plaintext.txt
