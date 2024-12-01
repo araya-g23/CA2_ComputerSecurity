@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 //website i used
 //https://medium.com/@deepak.sirohi9188/java-aes-encryption-and-decryption-1b30c9a5d900
+//my github link
+//https://github.com/araya-g23/ca2_computersecurity.git
 
 public class Main {
     public static void main(String[] args) {
