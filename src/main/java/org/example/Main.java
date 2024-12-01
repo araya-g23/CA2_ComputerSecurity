@@ -51,7 +51,7 @@ public class Main {
         try {
             Scanner input = new Scanner(System.in);
 
-            System.out.print("Enter the file to encrypt (e.g., input.txt): ");
+            System.out.print("Enter the file to encrypt (e.g., input.txt): ");//./src/assets/plaintext.txt
             String inputFilePath = input.nextLine();
             File inputFile = new File(inputFilePath);
             if (!inputFile.exists()) {
